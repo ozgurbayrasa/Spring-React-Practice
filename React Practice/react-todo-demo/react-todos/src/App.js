@@ -5,6 +5,8 @@ import NewTodoForm from './components/NewTodoForm';
 
 function App() {
 
+  const [showAddTodoForm, setShowAddTodoForm] = useState(false);
+
   const [todos, setTodos] = useState([
     {rowNumber: 1, rowDescription: 'Feed Puppy', rowAssigned: 'User one'},
     {rowNumber: 2, rowDescription: 'Water Plant', rowAssigned: 'User two'},
@@ -15,12 +17,29 @@ function App() {
   const addTodo = (description, assigned) =>{
     if(todos.length > 0){
 
+      let rowNumber;
+      if (todos.length > 0){
+        rowNumber = todos[todos.length - 1].rowNumber + 1;
+      }
+      else{
+        rowNumber = 1
+      }
+
       const newTodo = {rowNumber: todos.length + 1,
                        rowDescription: description, 
                        rowAssigned: assigned};
 
       setTodos(todos => [...todos, newTodo])
     }
+  }
+
+  const deleteTodo = (deleteTodoRowNumber) => {
+    
+    let filtered = todos.filter(function (value){
+      return value.rowNumber !== deleteTodoRowNumber;
+    });
+
+    setTodos(filtered);
   }
 
   return (
@@ -31,9 +50,16 @@ function App() {
           </div>
 
           <div className='card-body'>
-            <TodoTable todos={todos}/>
-            <button className='btn btn-primary' onClick={addTodo}>Add new todo</button>
-            <NewTodoForm addTodo={addTodo}/>
+            <TodoTable todos={todos} deleteTodo={deleteTodo}/>
+            <button className='btn btn-primary' 
+            onClick={() => setShowAddTodoForm(!showAddTodoForm)}>
+              {showAddTodoForm ? 'Close New Todo' : 'New Todo'}
+            </button>
+            
+            {
+              showAddTodoForm && <NewTodoForm addTodo={addTodo}/>
+            }
+            
           </div>
         </div>
     </div>
