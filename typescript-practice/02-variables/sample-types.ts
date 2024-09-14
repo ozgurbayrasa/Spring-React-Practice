@@ -4,7 +4,7 @@ let firstName: string = 'Ozgur';
 let lastName: string = "Bayrasa";
 
 // Let's break it!
-// found = 0; Reises an error, can't assign
+// found = 0; Raises an error, can't assign
 // number to boolean variable.
 
 console.log(found);
