@@ -1,6 +1,11 @@
-import ToDoRowItem from "./TodoRowItem";
+import React from "react";
+import { ToDoRowItem } from "./TodoRowItem";
+import { TodoModel } from "../model/ToDoModel";
 
-function TodoTable(props){
+export const TodoTable: React.FC<{
+    todos: TodoModel[],
+    deleteTodo: Function
+}> = (props) => {
 
 
     return(
@@ -26,5 +31,3 @@ function TodoTable(props){
         </table>
     )
 }
-
-export default TodoTable;
