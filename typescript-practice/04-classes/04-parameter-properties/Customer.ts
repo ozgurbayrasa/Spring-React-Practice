@@ -1,27 +1,34 @@
-"use strict";
 // Let's define a Customer class.
+
 class Customer {
-    // Constructor with parameters.
-    constructor(firstName, lastName) {
-        this._firstName = firstName;
-        this._lastName = lastName;
+
+    // Constructor with parameter properties.
+    constructor(private _firstName: string, private _lastName: string){
     }
+
     // Getter and Setter Accessors.
+
     // Default modifier is 'public'.
-    get firstName() {
+    get firstName(): string{
         return this._firstName;
     }
-    set firstName(value) {
+
+    set firstName(value: string){
         this._firstName = value;
     }
-    get lastName() {
+
+    public get lastName(): string {
         return this._lastName;
     }
-    set lastName(value) {
+    public set lastName(value: string) {
         this._lastName = value;
     }
+    
 }
+
 // Let's create an instance.
 let myCustomer = new Customer("Ozgur", "Bayrasa");
-console.log(myCustomer.firstName);
-console.log(myCustomer.lastName);
+
+console.log(myCustomer.firstName)
+console.log(myCustomer.lastName)
+
